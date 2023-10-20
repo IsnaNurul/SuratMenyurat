@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
-    <title>Halaman Login</title>
+    <title>Halaman Login | SMK YPC Tasikmalaya</title>
   </head>
   <body>
   <div class="wrapper">
@@ -23,16 +23,17 @@
         <div class="text-center mt-4 name">
             SMK YPC Tasikmalaya
         </div>
-        <form class="p-3 mt-3">
+        <form class="p-3 mt-3" method="POST" action="{{ route('actionlogin') }}">
+            @csrf
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>
-                <input type="text" name="userName" id="userName" placeholder="Username">
+                <input type="text" name="username" id="username" placeholder="Username">
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fas fa-key"></span>
                 <input type="password" name="password" id="pwd" placeholder="Password">
             </div>
-            <button class="btn mt-3">Login</button>
+            <button class="btn mt-3" type="submit">Login</button>
         </form>
         
     </div>

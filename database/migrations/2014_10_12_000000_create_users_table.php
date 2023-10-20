@@ -19,8 +19,8 @@ return new class extends Migration
             $table->text('alamat');
             $table->string('telp');
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
-            $table->bigInteger('id_unit_kerja')->unsigned();
-            $table->enum('role', ['admin', 'operator']);
+            $table->bigInteger('id_unit_kerja')->unsigned()->nullable();
+            $table->enum('role', ['admin', 'superadmin']);
             $table->foreign('id_unit_kerja')->references('id')->on('unit_kerjas')->onUpdate('cascade')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
