@@ -10,4 +10,8 @@ class SuratKeluar extends Model
     use HasFactory;
     protected $table = "surat_keluars";
     protected $guarded = "";
+
+    public function unitkerja() {
+        return $this->belongsTo(UnitKerja::class, 'pengirim');
+    }
 }

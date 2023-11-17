@@ -17,12 +17,15 @@ return new class extends Migration
             $table->string('nomor_surat')->unique();
             $table->date('tanggal_surat');
             $table->enum('sifat_surat', ['segera', 'penting', 'rahasia', 'biasa']);
-            $table->string('pengirim');
+            $table->bigInteger('pengirim')->unsigned();
             $table->string('tujuan');
             $table->text('alamat');
+            $table->string('perihal');
             $table->text('isi_surat_ringkas');
-            $table->text('foto');
+            $table->text('file')->nullable();
+            $table->datetime('tanggal');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('pengirim')->references('id')->on('unit_kerjas')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

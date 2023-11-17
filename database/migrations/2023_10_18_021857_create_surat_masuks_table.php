@@ -20,11 +20,11 @@ return new class extends Migration
             $table->string('pengirim');
             $table->string('perihal');
             $table->text('isi_surat_ringkas');
-            $table->bigInteger('id_unit_kerja')->unsigned()->nulable();
-            $table->string('isi_disposisi');
-            $table->text('foto');
+            $table->text('file')->nullable();
+            $table->datetime('tanggal');
+            $table->string('status');
+            $table->string('lokasi_penyimpanan')->nullable();
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('id_unit_kerja')->references('id')->on('unit_kerjas')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
