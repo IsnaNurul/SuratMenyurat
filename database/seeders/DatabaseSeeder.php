@@ -25,27 +25,6 @@ class DatabaseSeeder extends Seeder
                  'nama_unit_kerja' => 'Super User',
             ],
         );
-        DB::table('unit_kerjas')->insert(
-            [
-                'nama_unit_kerja' => 'Administrasi',
-            ],
-        );
-        DB::table('unit_kerjas')->insert(
-            [
-                'nama_unit_kerja' => 'Sekretaris',
-            ],
-        );
-        DB::table('unit_kerjas')->insert(
-            [
-                'nama_unit_kerja' => 'Bendahara',
-            ],
-        );
-        DB::table('unit_kerjas')->insert(
-            [
-                'nama_unit_kerja' => 'KU Umum',
-            ],
-        );
-        
 
         DB::table('users')->insert(
             [
@@ -53,34 +32,21 @@ class DatabaseSeeder extends Seeder
                 'role' => 'superadmin',
                 'password' => bcrypt('12341234'),
                 'jenis_kelamin' => 'laki-laki',
-                'alamat' => 'bandung',
+                'alamat' => 'Tasikmalaya',
                 'username' => 'superadmin',
                 'id_unit_kerja' => '1',
                 'telp' => '098876532456',
             ],
         );
-        DB::table('users')->insert(
-            [
-                'name' => 'Admin',
-                'role' => 'admin',
-                'password' => bcrypt('12341234'),
-                'jenis_kelamin' => 'perempuan',
-                'alamat' => 'bandung',
-                'username' => 'admin',
-                'id_unit_kerja' => '2',
-                'telp' => '098876532456',
-            ],
-        );
-        
 
         DB::table('lembagas')->insert(
             [
                 'nama_lembaga' => 'SMK YPC Tasikmalaya',
                 'kabupaten' => 'Kab. Tasikmalaya',
-                'telp' => '123456789009',
+                'telp' => '0811 2224 563',
                 'email' => 'smkypctasikmalaya@gmail.com',
-                'alamat' => 'Tasikmalaya',
-                'nama_ketua' => 'Drs. Ujang Sanusi M.M',
+                'alamat' => 'Jl. Garut - Tasikmalaya, Cikunten, Kec. Singaparna, Kabupaten Tasikmalaya, Jawa Barat 46414',
+                'nama_ketua' => 'Drs. Ujang Sanusi, MM.',
             ],
         );
         

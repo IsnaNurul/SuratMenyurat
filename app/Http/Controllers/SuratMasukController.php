@@ -17,16 +17,10 @@ class SuratMasukController extends Controller
     public function show() {
         if (Auth::user()->role === "superadmin" || Auth::user()->role === "admin") {
             $data['unitkerja'] = UnitKerja::all();
-            $data['suratmasuk'] = SuratMasuk::with('unitkerja')->get();
-            $data['disposisi2'] = Disposisi::select('surat_masuks.*', 'unit_kerjas.*', 'surat_masuks.id as IdSuratMasuk')
-            ->join('surat_masuks', 'disposisis.id_surat_masuk', '=', 'surat_masuks.id')
-            ->join('unit_kerjas', 'disposisis.disposisi', '=', 'unit_kerjas.id')
-            // ->groupBy('surat_masuks.id','surat_masuks.id_user')
+            $data['suratmasuk'] = SuratMasuk::with('unitkerja')
+            ->orderBy('created_at', 'desc')
             ->get();
-            $data['disposisi'] = Disposisi::with('unitkerja', 'unitkerja2')->get();
-            $user = Auth::user();
-            $data['dari_bagian'] = $user::with('unitkerja')->first();
-            $data['suratmasuk'] = $data['suratmasuk']->sortByDesc(function ($surat) {
+            $data['suratmasuk'] = $data['suratmasuk']->sortBy(function ($surat) {
                 switch ($surat->sifat_surat) {
                     case 'segera':
                         return 1;
@@ -37,7 +31,15 @@ class SuratMasukController extends Controller
                     default:
                         return 4;
                 }
-            })->sortByDesc('created_at');
+            });
+            $data['disposisi2'] = Disposisi::select('surat_masuks.*', 'unit_kerjas.*', 'surat_masuks.id as IdSuratMasuk')
+            ->join('surat_masuks', 'disposisis.id_surat_masuk', '=', 'surat_masuks.id')
+            ->join('unit_kerjas', 'disposisis.disposisi', '=', 'unit_kerjas.id')
+            // ->groupBy('surat_masuks.id','surat_masuks.id_user')
+            ->get();
+            $data['disposisi'] = Disposisi::with('unitkerja', 'unitkerja2')->get();
+            $user = Auth::user();
+            $data['dari_bagian'] = $user::with('unitkerja')->first();
         }else {
             $user = Auth::user()->id_unit_kerja;
 
@@ -111,7 +113,6 @@ class SuratMasukController extends Controller
             'pengirim'=>'required',
             'perihal'=>'required',
             'isi_surat_ringkas'=>'required',
-            // 'disposisi' => 'required'
         ]);
         SuratMasuk::where('id',$req->id)->update([
             'id_user'=>$user,

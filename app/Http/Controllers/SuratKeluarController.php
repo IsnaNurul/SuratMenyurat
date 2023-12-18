@@ -17,7 +17,7 @@ class SuratKeluarController extends Controller
         if (Auth::user()->role === "superadmin" || Auth::user()->role === "admin") {
             $data['unitkerja'] = UnitKerja::all();
             $data['suratkeluar'] = SuratKeluar::with('unitkerja')->get();
-            $data['suratmasuk'] = $data['suratmasuk']->sortByDesc(function ($surat) {
+            $data['suratkeluar'] = $data['suratkeluar']->sortByDesc(function ($surat) {
                 switch ($surat->sifat_surat) {
                     case 'segera':
                         return 1;
@@ -33,7 +33,7 @@ class SuratKeluarController extends Controller
             $user = Auth::user()->id_unit_kerja;
             $data['unitkerja'] = UnitKerja::all();
             $data['suratkeluar'] = SuratKeluar::where('pengirim', $user)->get();
-            $data['suratmasuk'] = $data['suratmasuk']->sortByDesc(function ($surat) {
+            $data['suratkeluar'] = $data['suratkeluar']->sortByDesc(function ($surat) {
                 switch ($surat->sifat) {
                     case 'segera':
                         return 1;
